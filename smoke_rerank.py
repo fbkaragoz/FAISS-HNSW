@@ -31,7 +31,7 @@ doc_embs = encoder.encode(
 )
 
 d = doc_embs.shape[1]
-index = faiss.indexHNSWFlat(d, 16)
+index = faiss.IndexHNSWFlat(d, 16)
 index.hnsw.efConstruction = 100
 index.hnsw.efSearch = 64
 index.add(doc_embs.astype("float32"))
@@ -61,8 +61,8 @@ def search(query: str, k_retrieve: int = 5):
     for rank, idx in enumerate(order, start=1):
         print(f"{rank}. score={rerank_scores[idx]:.4f} | {candidates[idx]}")
 
-    search("What is FAISS?")
-    search("How to run multi-container applications?")
-    search("What is Ottoman Turkish?")
-    search("How do I improve retrieval quality after embedding search?")
-    search("What makes Ekşi Sözlük text hard for NLP?")
+search("What is FAISS?")
+search("How to run multi-container applications?")
+search("What is Ottoman Turkish?")
+search("How do I improve retrieval quality after embedding search?")
+search("What makes Ekşi Sözlük text hard for NLP?")
